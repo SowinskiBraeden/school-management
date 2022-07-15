@@ -15,8 +15,8 @@ export default function Home() {
         <h1 className={styles.title}>Welcome</h1>
 
         <div className={styles.container}>
-          <div className={styles.login_links}>
           <h3>Login to...</h3>
+          <div className={styles.login_links}>
             <Link href="/login/student">
               <Button variant='success' className={styles.link} size="lg">
                 STUDENT
