@@ -231,3 +231,6 @@
   background: #FFFFFF !important;
   color: #4285F4 !important;
 }
+.error_msg {
+  color: #D8000C;
+}
