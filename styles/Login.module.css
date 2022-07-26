@@ -232,5 +232,6 @@
   color: #4285F4 !important;
 }
 .error_msg {
+  margin-top: 15px;
   color: #D8000C;
 }

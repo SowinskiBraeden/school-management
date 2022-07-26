@@ -19,17 +19,17 @@ export default function Home() {
           <div className={styles.login_links}>
             <Link href="/login/student">
               <Button variant='success' className={styles.link} size="lg">
-                STUDENT
+                Student
               </Button>
             </Link>
             <Link href="/login/teacher">
               <Button variant='primary' className={styles.link} size="lg">
-                TEACHER
+                Teacher
               </Button>
             </Link>
             <Link href="/login/admin">
               <Button variant='dark' className={styles.link} size="lg">
-                ADMIN
+                Admin
               </Button>
             </Link>
           </div>
