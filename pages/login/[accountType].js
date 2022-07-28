@@ -13,12 +13,15 @@ export default function Login() {
   const { accountType } = router.query
   const valid = ['student', 'teacher', 'admin']
   let [error, setError] = useState("")
-
+  
+  const [loading, setLoading] = useState(false)
   const [id, setID] = useState("")
   const [password, setPassword] = useState("")
 
   // Define functions
   const login = async (e) => {
+    setError('')
+    setLoading(true)
     e.preventDefault()
     
     const loginObject = defineLoginObject(accountType, id, password)
@@ -32,23 +35,27 @@ export default function Login() {
     }).then(res => {
       // Redirect to dashboard on successful login
       if (res.data.success) {
+        console.log('authenticated successfully')
         router.push(`/dashboard/${accountType}`)
-      } else setError(res.data.message)
+      } else {
+        setError(res.data.message)
+        setLoading(false)
+      }
     })
   }
 
   const isAuthenticated = (type) => {
     axios.get(`${process.env.API_URL}/${type}`, { withCredentials: true })  
-      .then((res) => {
-        console.log('here')
-        console.log(res)
-        if (res.data.success) return NextResponse.redirect(`${process.env.BASE_URL}/dashboard/${accountType}`)
+      .catch((err) => {
+        if (err.response.data.success) return router.push(`/dashboard/${accountType}`)
       })
   }
 
   if (!valid.includes(accountType)) return (<div><NotFound/></div>)
 
   isAuthenticated(accountType)
+
+  if (loading) return (<div className={styles.loader}></div>)
 
   return (
     <div>
